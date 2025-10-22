@@ -7,6 +7,15 @@ const app = express();
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Remover headers de segurança restritivos (CSP)
+app.use((req, res, next) => {
+  res.removeHeader('Content-Security-Policy');
+  res.removeHeader('X-Content-Security-Policy');
+  res.removeHeader('X-WebKit-CSP');
+  next();
+});
+
 app.use(express.static(path.join(__dirname)));
 
 // Dados de tabelas de frete das transportadoras
