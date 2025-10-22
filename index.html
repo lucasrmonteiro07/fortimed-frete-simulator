@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Frete - Fortimed</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>Simulador de Frete</h1>
+                <p class="subtitle">Calcule o valor de frete baseado em transportadoras</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="simulator-card">
+                <form id="freteForm" class="form-container">
+                    <!-- Transportadora -->
+                    <div class="form-group">
+                        <label for="transportadora">Transportadora *</label>
+                        <select id="transportadora" required>
+                        </select>
+                    </div>
+
+                    <!-- Região -->
+                    <div class="form-group">
+                        <label for="regiao">Região *</label>
+                        <select id="regiao" required>
+                            <option value="">Selecione uma região</option>
+                        </select>
+                    </div>
+
+                    <!-- Cidade (opcional) -->
+                    <div class="form-group">
+                        <label for="cidade">Cidade (informativo)</label>
+                        <select id="cidade" disabled>
+                            <option value="">Selecione uma cidade</option>
+                        </select>
+                    </div>
+
+                    <!-- Peso -->
+                    <div class="form-group">
+                        <label for="peso">Peso (kg) *</label>
+                        <input type="number" id="peso" placeholder="Ex: 5.5" step="0.01" min="0" required>
+                    </div>
+
+                    <!-- Valor da Mercadoria -->
+                    <div class="form-group">
+                        <label for="valor">Valor da Mercadoria (R$) *</label>
+                        <input type="number" id="valor" placeholder="Ex: 100.00" step="0.01" min="0" required>
+                    </div>
+
+                    <!-- Botão Calcular -->
+                    <button type="submit" class="btn btn-primary">Calcular Frete</button>
+                </form>
+
+                <!-- Resultado -->
+                <div id="resultado" class="resultado" style="display: none;">
+                    <h2>✅ Resultado do Cálculo</h2>
+                    <div class="resultado-grid">
+                        <div class="resultado-item">
+                            <span class="label">🚚 Transportadora:</span>
+                            <span id="resultTransportadora" class="value">-</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="label">🌍 Região:</span>
+                            <span id="resultRegiao" class="value">-</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="label">🏙️ Cidade:</span>
+                            <span id="resultCidade" class="value">-</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="label">⚖️ Peso:</span>
+                            <span id="resultPeso" class="value">-</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="label">💳 Valor da Mercadoria:</span>
+                            <span id="resultValor" class="value">-</span>
+                        </div>
+                        <div class="resultado-item">
+                            <span class="label">📦 Valor do Frete:</span>
+                            <span id="resultFrete" class="value frete">-</span>
+                        </div>
+                        <div class="resultado-item highlight" style="grid-column: 1 / -1;">
+                            <span class="label">💰 Valor Total (Mercadoria + Frete):</span>
+                            <span id="resultTotal" class="value total">-</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="limparResultado()">🔄 Nova Simulação</button>
+                </div>
+
+                <!-- Mensagem de Erro -->
+                <div id="erro" class="erro" style="display: none;"></div>
+            </div>
+
+            <!-- Tabela de Referência -->
+            <div class="info-card">
+                <h3>Tabelas de Frete por Transportadora</h3>
+                <div id="tabelasContainer" class="tabelas-container"></div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 Fortimed - Simulador de Frete. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="simulator.js"></script>
+</body>
+</html>
